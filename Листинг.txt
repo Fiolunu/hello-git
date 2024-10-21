@@ -1,0 +1,190 @@
+http://hilite.me/
+
+#include <iostream>
+#include <cmath>
+#include <string>
+void qus(int aa, int bb, int cc, int dd)
+{std::cout <<aa<<bb<<cc<<dd<<std::endl;}
+int main()
+{//значение переменных
+int a{1};
+int a1{1};
+int a2{1};
+int b{};
+int b1{};
+int b2{};
+int b3{};
+int u{};
+int u2{};
+int u1{};
+int S{};
+int const s=2;
+int rv[]{1, 2,3};
+int r[]{1, 2,3};
+std::string str1 {"Group, Name: 2221, P. Vysotskaia. N = 6"};
+int Op,c,c1,c2,c3,k,k1,k2,d1,d2,n,day,Z,x,y,z,T;
+T=6 % 4 + 5;//количество машин
+Z=6 % 3 + 1;//задача
+k=6 % 3 + 2;// количество складов
+n = (6 + 4) % 4 + 3;//переодичность
+Op=6 % 3 + 1;// номер проверочного выражения
+//цикла нет для массива ввоза и вывоза, у меня с ним выходят отрицательные случайные значения
+srand(time(NULL));//в надежде что случайные числа будут случайными
+//количество забраных изделий
+rv[0]=rand()%(25*k-3*k)+3*k;//случайное количество изделий для вывоза
+rv[1]=rand()%(25*k-3*k)+3*k;//случайное количество изделий для вывоза
+rv[2]=rand()%(25*k-3*k)+3*k;//случайное количество изделий для вывоза
+//поступаемые изделия
+r[0]=rand()%(20-5)+5;//случайное количество изделий для ввоза
+r[1]=rand()%(20-5)+5;//случайное количество изделий для ввоза
+r[2]=rand()%(20-5)+5;//случайное количество изделий для ввоза
+(r[0]<r[1])? u1=r[0]:(r[2]<r[1])? u1=r[2]:u1=r[1];//это для минимального значения на складе
+std::cout << "Enter kol-vo day: ";// не хотела менять раскладку, но и слова на английском не пошли
+std::cin>>day;//ввод количества дней
+//шаблонная информация по основным переменным с информацией о разработчике(мне)
+//принимаю заказы на программы которые кажется что можно сделать просто, но я сделаю их сложно
+std::cout<<str1<<std::endl;//использование переменной из string
+std::cout<< "Task - Usage any operations and <math functions>"<<std::endl;
+std::cout<< "Type :  warehouse 1  "<<std::endl;
+std::cout<< "Options: k = "<<k<<", Z = "<<Z<<", n = "<<n<<std::endl;
+
+// Первый склад
+std::cout << "Input: "<<std::endl;
+std::cout<< "k = "<<k-1<< " r = "<<r[0]<<std::endl;
+std::cout<< "Procedure: output load: r2 = "<<rv[0]<< ", n = "<<n<<std::endl;
+std::cout << "Table warehouse 1 "<<std::endl;
+std::cout << "Day\tstock\tacceptance\tshipment"<<std::endl;
+for (;a<day+1;)//цикл по дням
+{int y;//для дней
+y = (a + 6) % 7; //для дней
+b1=b1+r[0];//ввоз на первый склад
+c1=rv[0];//вывоз первого склада
+(y==2 or y==4 or y==6 or y==5 or y==3)? ((b1>rv[0])? b1=b1-(rv[0]):b1=0):c1=0;//opredelenie day vyvoza
+std::cout <<a<< "\t"<<b1<< "\t"<<r[0]<< "\t"<<"\t"<<c1<<std::endl;//основная информация про день
+a++;//увеличили день, что бы не было дня сурка
+u2=u2+b1;//это для среднего значения
+(b1<u)? u=u:u=b1;//это на максимум по складам
+(b1>u1)? u1=u1:u1=b1;//это уже минимум
+}
+//вывод данных
+std::cout <<"average = "<< u2/day <<"; max = "<<u<<"; min = "<<u1<< "; stock = "<<b1<<std::endl;
+//Обнуление переменных
+a=1;
+u1=0;
+//Второй склада
+std::cout << "Input: "<<std::endl;
+std::cout<< "k = "<<k<< " r = "<<r[1]<<std::endl;
+std::cout<< "Procedure: output load: r2 = "<<rv[1]<< ", n = "<<n<<std::endl;
+std::cout << "Table warehouse 2 "<<std::endl;
+std::cout << "Day\tstock\tacceptance\tshipment"<<std::endl;
+for (;a<day+1;)//цикл по дням
+{int y;//для дней
+y = (a + 6) % 7; //для дней
+b2=b2+r[1];//ввоз на склад
+c2=rv[1];//вывоз первого склада
+(y==2 or y==4 or y==6 or y==5 or y==3)? ((b2>rv[1])? b2=b2-(rv[1]):b2=0):c2=0;//opredelenie day vyvoza
+std::cout <<a<< "\t"<<b2<< "\t"<<r[1]<< "\t"<< "\t"<<c2<<std::endl;//основная информация про день
+a++;//увеличили день, что бы не было дня сурка
+u2=u2+b2;//это для среднего значения
+(b2<u)? u=u:u=b2;//это на максимум по складам
+(b2>u1)? u1=u1:u1=b2;//это уже минимум
+}
+//вывод данных
+std::cout <<"average = "<< u2/day <<"; max = "<<u<<"; min = "<<u1<< "; stock = "<<b2<<std::endl;
+
+a=1;
+u1=0;
+//Третий склад
+std::cout << "Input: "<<std::endl;
+std::cout<< "k = "<<k+1<< " r = "<<r[2]<<std::endl;
+std::cout<< "Procedure: output load: r2 = "<<rv[2]<< ", n = "<<n<<std::endl;
+std::cout << "Table warehouse 2 "<<std::endl;
+std::cout << "Day\tstock\tacceptance\tshipment"<<std::endl;
+for (;a<day+1;)//цикл по дням
+{int y;//для дней
+y = (a + 6) % 7; //для дней
+b3=b3+r[2];
+c3=rv[2];//вывоз первого склада
+(y==2 or y==4 or y==6 or y==5 or y==3)? ((b3>rv[2])? b3=b3-(rv[2]):b3=0):c3=0;//opredelenie day vyvoza
+std::cout <<a<< "\t"<<b3<< "\t"<<r[2]<< "\t"<< "\t"<<c3<<std::endl;//основная информация про день
+a++;//увеличили день, что бы не было дня сурка
+u2=u2+b3;//это для среднего значения
+(b3<u)? u=u:u=b3;//это на максимум по складам
+(b3>u1)? u1=u1:u1=b3;//это уже минимум
+}
+//вывод данных
+std::cout <<"average = "<< u2/day <<"; max = "<<u<<"; min = "<<u1<< "; stock = "<<b3<<std::endl;
+
+//Обнуление переменных
+a=1;
+b1=0;
+b2=0;
+b3=0;
+u1=0;
+//Таблица по ВСЕМ складам
+std::cout << "Input: "<<std::endl;
+std::cout<< "k = "<<k+1<< " r = "<<r[0]+r[1]+r[2]<<std::endl;
+std::cout<< "Procedure: output load: r2 = "<<rv[0]+rv[1]+rv[2]<< ", n = "<<n<<std::endl;
+std::cout << "Table (base) "<<std::endl;
+std::cout << "Day\tstock\tacceptance\tshipment"<<std::endl;
+for (;a<day+1;)//цикл по дням
+{int y;//для дней
+y = (a + 6) % 7; //для дней
+b1=b1+r[0];//ввоз на первый склад
+c1=rv[0];//вывоз первого склада
+b2=b2+r[1];//ввоз на второй склад
+b3=b3+r[2];//ввоз на третий склад
+c2=rv[1];//вывоз второго склада
+c3=rv[2];//вывоз третьего склада
+(y==2 or y==4 or y==6 or y==5 or y==3)? ((b1>rv[0])? b1=b1-(rv[0]):b1=0):c1=0;
+(y==2 or y==4 or y==6 or y==5 or y==3)? ((b2>rv[1])? b2=b2-(rv[1]):b2=0):c2=0;
+(y==2 or y==4 or y==6 or y==5 or y==3)? ((b3>rv[2])? b3=b3-(rv[2]):b3=0):c3=0;
+b=b1+b2+b3;// общее значение ввоза
+c=c1+c2+c3;// общее значение вывоза
+std::cout <<a<< "\t"<<b<< "\t"<<r[0]+r[1]+r[2]<< "\t"<< "\t"<<c<<std::endl;//основная информация про день
+a++;//увеличили день, что бы не было дня сурка
+u2=u2+b;//это для среднего значения
+(b1<u)? u=u:u=b1;//это на максимум по складам
+(b2<u)? u=u:u=b2;//это тоже на максимум по складам
+(b3<u)? u=u:u=b3;//это тоже на максимум по складам
+(b1>u1)? u1=u1:u1=b1;//это уже минимум
+(b2>u1)? u1=u1:u1=b2;//снова минимум
+(b3>u1)? u1=u1:u1=b3;//снова минимум
+}
+//вывод данных
+std::cout <<"average = "<< u2/day <<"; max = "<<u<<"; min = "<<u1<< "; stock = "<<b<<std::endl;
+
+(b1>b2)? ((b1>b3)? k1=1:k1=3):k1=2;//это было нужно для определения самого загруженного склада
+(b1>b2)? ((b1>b3)? d1=b1:d1=b3):d1=b2;// а это уже величины загруженного склада
+(b2>b1)? ((b3>b2)? k2=2:k2=3):k2=1;//тут тоже самое просто с еще одними переменными
+(b2>b1)? ((b3>b2)? d2=b2:d2=b3):d2=b1;//тоже определение загруженности
+
+std::cout<< "Most crowded warehouse nw(f) = "<<k1<<", rnw (f) = "<<d1<<std::endl;//самый загруженныф
+std::cout<< "The emptiest warehouse nw(e) = "<<k2<<", rnw (e) = "<<d2<<std::endl;//не загруженный
+
+//это все, спасибо за внимание
+
+for (int k{}; k<3; k++)
+{
+b=0;c=0;
+std::cout << "Input: "<<std::endl;
+std::cout<< "k = 3"<< " r = "<<r[k]<<std::endl;
+std::cout<< "Procedure: output load: r2 = "<<rv[k]<< ", n = "<<n<<std::endl;
+std::cout << "Table warehouse "<<k+1<<std::endl;
+for (int a{0};a<day;)
+{int y;//для дней
+y = (a + 6) % 7; //для дней
+b=b+r[k];//ввоз на первый склад
+c=rv[k];//вывоз первого склада
+(y==2 or y==4 or y==6 or y==5 or y==3)? ((b>rv[k])? b=b-(rv[k]):b=0):c=0;//opredelenie day vyvoza
+a++;//увеличили день, что бы не было дня сурка
+u2=u2+b;//это для среднего значения
+(b<u)? u=u:u=b;//это на максимум по складам
+(b>u1)? u1=u1:u1=b;//это уже минимум
+std::cout << "Day\tstock\tacceptance\tshipment"<<std::endl;
+
+}
+
+}
+
+}
