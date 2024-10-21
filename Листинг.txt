@@ -1,4 +1,3 @@
-http://hilite.me/
 
 #include <iostream>
 #include <cmath>
